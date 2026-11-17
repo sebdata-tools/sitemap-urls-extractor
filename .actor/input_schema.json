@@ -1,0 +1,55 @@
+{
+    "title": "Sitemap URLs Extractor input",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "sites": {
+            "title": "Websites or sitemap URLs",
+            "type": "array",
+            "description": "One per line, up to 500. A website (example.com or https://www.example.com): its sitemaps are found through robots.txt, then the usual paths. Or the address of one sitemap or sitemap index (ending in .xml, .xml.gz or .txt, or containing \"sitemap\"): only that one is read.",
+            "editor": "stringList",
+            "prefill": ["https://www.sitemaps.org", "https://docs.apify.com"]
+        },
+        "maxUrlsPerSite": {
+            "title": "Maximum URLs per site",
+            "type": "integer",
+            "description": "Stop after this many saved URLs for each entry above; no further sitemap files are fetched. 0 = no limit. Each URL saved is charged.",
+            "default": 10000,
+            "prefill": 100,
+            "minimum": 0,
+            "maximum": 50000000
+        },
+        "includePatterns": {
+            "title": "Only URLs matching",
+            "type": "array",
+            "description": "Optional. Keep a URL only if it matches at least one of these. Each line is a piece of text the URL must contain (/blog/) or a regular expression (\\.html$, ^https://shop\\.). Case-sensitive.",
+            "editor": "stringList"
+        },
+        "excludePatterns": {
+            "title": "Skip URLs matching",
+            "type": "array",
+            "description": "Optional. Drop a URL if it matches any of these (text or regular expression, as above). Applied after \"Only URLs matching\".",
+            "editor": "stringList"
+        },
+        "modifiedAfter": {
+            "title": "Modified on or after",
+            "type": "string",
+            "description": "Optional. Keep only URLs whose lastmod is on or after this: a date (2026-01-31), a date and time (2026-01-31T12:00:00Z) or an age (7 days, 2 weeks, 3 months). URLs without a lastmod are dropped, and child sitemaps that an index dates earlier are not fetched.",
+            "editor": "textfield"
+        },
+        "includeExtensions": {
+            "title": "Include image, video, news and hreflang data",
+            "type": "boolean",
+            "description": "Adds the lists images, videos, news and alternates (hreflang) to each URL whose sitemap entry has them. Off = a smaller, flat output.",
+            "default": false
+        },
+        "proxyConfiguration": {
+            "title": "Proxy",
+            "type": "object",
+            "description": "Optional. Most sites serve their sitemaps without a proxy; a few refuse datacenter addresses.",
+            "editor": "proxy",
+            "sectionCaption": "Advanced"
+        }
+    },
+    "required": ["sites"]
+}

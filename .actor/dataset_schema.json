@@ -1,0 +1,39 @@
+{
+    "actorSpecification": 1,
+    "fields": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+            "url": { "type": "string", "description": "The page address, as the sitemap gives it." },
+            "lastmod": { "type": ["string", "null"], "description": "Last modification: a date (2026-01-31) when the sitemap gives no time, otherwise ISO 8601 UTC. Null when absent or unreadable." },
+            "changefreq": { "type": ["string", "null"], "description": "The sitemap's change frequency hint, e.g. daily." },
+            "priority": { "type": ["number", "null"], "description": "The sitemap's priority hint, 0 to 1." },
+            "sitemapUrl": { "type": "string", "description": "The sitemap file the URL was read from." },
+            "site": { "type": "string", "description": "The input entry the URL belongs to." },
+            "images": { "type": "array", "description": "With includeExtensions: the entry's images (url, title, caption)." },
+            "videos": { "type": "array", "description": "With includeExtensions: the entry's videos (title, description, thumbnailUrl, contentUrl, playerUrl, durationSeconds, publicationDate)." },
+            "news": { "type": "array", "description": "With includeExtensions: the entry's news data (title, publicationName, language, publicationDate)." },
+            "alternates": { "type": "array", "description": "With includeExtensions: the entry's language versions (hreflang, href)." }
+        },
+        "required": ["url", "sitemapUrl", "site"]
+    },
+    "views": {
+        "overview": {
+            "title": "URLs",
+            "transformation": {
+                "fields": ["url", "lastmod", "changefreq", "priority", "sitemapUrl", "site"]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": { "label": "URL", "format": "link" },
+                    "lastmod": { "label": "Last modified", "format": "text" },
+                    "changefreq": { "label": "Change frequency", "format": "text" },
+                    "priority": { "label": "Priority", "format": "number" },
+                    "sitemapUrl": { "label": "Sitemap", "format": "link" },
+                    "site": { "label": "Site", "format": "text" }
+                }
+            }
+        }
+    }
+}

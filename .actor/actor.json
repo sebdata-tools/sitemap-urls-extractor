@@ -1,0 +1,17 @@
+{
+    "actorSpecification": 1,
+    "name": "sitemap-urls-extractor",
+    "title": "Sitemap URLs Extractor: Every URL, lastmod, Images, Hreflang",
+    "description": "Every URL from the sitemaps of many websites in one run. Finds sitemaps through robots.txt and the usual paths, follows indexes, reads XML, gzip, text and RSS/Atom. One row per URL with lastmod, changefreq, priority and source sitemap. Filters by pattern and date.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "defaultMemoryMbytes": 512,
+    "minMemoryMbytes": 256,
+    "maxMemoryMbytes": 2048,
+    "dockerfile": "../Dockerfile",
+    "input": "./input_schema.json",
+    "output": "./output_schema.json",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    }
+}
